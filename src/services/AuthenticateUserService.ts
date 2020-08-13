@@ -16,7 +16,7 @@ interface Response {
   token: string;
 }
 
-class AuthenticateuserService {
+class AuthenticateUserService {
   public async execute({ email, password }: Request): Promise<Response> {
     const usersRepository = getRepository(Users);
 
@@ -46,4 +46,4 @@ class AuthenticateuserService {
   }
 }
 
-export default AuthenticateuserService;
+export default AuthenticateUserService;
