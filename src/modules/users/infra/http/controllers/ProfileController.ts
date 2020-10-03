@@ -11,7 +11,9 @@ export default class ProfileController {
 
     const showProfile = container.resolve(ShowProfileService);
 
-    const user = showProfile.execute({ user_id });
+    const user = await showProfile.execute({ user_id });
+
+    delete user.password;
 
     return response.json(user);
   }
@@ -30,19 +32,7 @@ export default class ProfileController {
       password,
     });
 
-    console.log('oldUser', user);
-
-    Object.assign(user, {
-      user_id,
-      name,
-      email
-    });
-
-    console.log('newUser', user);
-
-    if (!!user.password) {
-      delete user.password;
-    }
+    delete user.password;
 
     return response.json(user);
   }
