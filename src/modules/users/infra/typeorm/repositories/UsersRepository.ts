@@ -1,7 +1,8 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, Not } from 'typeorm';
 
-import IUsersRepository from '@modules/users/repositories/IUsersRepository'; //  repositories/Iuserepositories;
-import ICreateUsertDTO from '@modules/users/dtos/ICreateUserDTO'; //ICreateAppointmentDTO;
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
+import ICreateUsertDTO from '@modules/users/dtos/ICreateUserDTO';
+import IFindAllProvicers from '@modules/users/dtos/IFindAllProviderDTO';
 
 import User from '@modules/users/infra/typeorm/entities/Users';
 
@@ -24,6 +25,25 @@ class UsersRepository implements IUsersRepository {
     });
 
     return user;
+  }
+
+  public async findAllProviders({
+    execpt_user_id
+  }: IFindAllProvicers): Promise<User[]> {
+
+    let users: User[];
+
+    if (execpt_user_id) {
+      users = await this.ormRepository.find({
+        where: {
+          id: Not(execpt_user_id)
+        }
+      });
+    } else {
+      users = await this.ormRepository.find();
+    }
+
+    return users;
   }
 
   public async create(userData: ICreateUsertDTO): Promise<User> {
