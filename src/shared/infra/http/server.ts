@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
 import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
@@ -40,5 +41,5 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
 const port = 3333;
 
 app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+  console.log(`Server started on port ${port} - url ${process.env.APP_WEB_URL}`);
 });
