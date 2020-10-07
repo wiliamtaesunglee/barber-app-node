@@ -2,8 +2,7 @@
 .vscode/
 build/
 temp/
-.env
-coverage
+
 /*.js
 node_modules
 dist
