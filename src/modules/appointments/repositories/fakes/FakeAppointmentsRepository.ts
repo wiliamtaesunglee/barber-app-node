@@ -41,7 +41,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
     day,
     month,
     year
-   }: IFindAllInDayFromProviderDTO): Promise<Appointment[]> {
+  }: IFindAllInDayFromProviderDTO): Promise<Appointment[]> {
     const appointments = this.appointments.filter(appointment => {
       return (
         appointment.provider_id === provider_id &&

@@ -23,6 +23,10 @@ export default class EtherealMailProvider implements IMailProvider {
           user: account.user,
           pass: account.pass,
         },
+        tls: {
+          // do not fail on invalid certs
+          rejectUnauthorized: false
+        },
       });
 
       this.client = transporter;
